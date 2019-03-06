@@ -51,7 +51,8 @@ public class ImageProcessing {
         maskRed = new Mat();
         maskBlue = new Mat();
         isGray = false;
-        updateBitmap(src);
+        if (src.cols() > 0)
+            updateBitmap(src);
     }
 
     public void toGrayOrColor() {
