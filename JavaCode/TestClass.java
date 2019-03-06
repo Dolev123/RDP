@@ -509,7 +509,7 @@ public class TestClass {
                 }
 
                 //adding the path to paths
-                paths.add(path + "\\" + file.getFileName());
+                paths.add(path + "/" + file.getFileName());
 
                 //if the media wanted is preview
                 if (option == FetchMediaTaskContent.PREVIEW) {

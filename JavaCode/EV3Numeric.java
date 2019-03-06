@@ -20,8 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dji.FPVDemo.R;
-
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -101,7 +99,6 @@ public class EV3Numeric extends AppCompatActivity {
 
     /**
      * constructor for the activity.
-     *
      * @param savedInstanceState
      */
     public void onCreate(Bundle savedInstanceState) {
@@ -208,12 +205,12 @@ public class EV3Numeric extends AppCompatActivity {
         startButton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View v) {
-                // Toggle between "Start driving!" and "Stop driving!".
+               /* // Toggle between "Start driving!" and "Stop driving!".
                 if (mEV3Service.getState() != BluetoothEV3Service.STATE_CONNECTED) {
                     Msg(R.string.title_not_connected);
                     setResultToToast("not connected");
                     return;
-                }
+                } */
 
                 Log.d(TAG, "CHECK: 1");
                 boolean canStart = tc.getPaths().size() > 0;
@@ -226,11 +223,15 @@ public class EV3Numeric extends AppCompatActivity {
 
                     //TODO Image processing
                     currPath = tc.getPaths().get(tc.getPaths().size() - 1);
+                    Log.d(TAG, "CHECK: 2.1");
                     imageProcessing = new ImageProcessing(EV3Numeric.this, currPath);
+                    Log.d(TAG, "CHECK: 2.2");
                     MyPoint[][] theMatrix= imageProcessing.colorThreshold();
+                    Log.d(TAG, "CHECK: 2.3");
                     ivProcessedImage.setImageBitmap(imageProcessing.bm);
+                    Log.d(TAG, "CHECK: 2.3");
                     ///END: image processing needs to be here
-                    Log.d(TAG, "CHECK: 3");
+                    Log.d(TAG, "CHECK: 3.4");
                     //TODO activate Dijkstra
                     ArrayList<Circle> c = new ArrayList<>();
                     int endPointId = -1;
@@ -259,7 +260,7 @@ public class EV3Numeric extends AppCompatActivity {
                         a1=null;
                     }
                     Log.d(TAG, "CHECK: 5");
-                    send(a1, "abc");
+                    //send(a1, "abc");
                     Log.d(TAG, "CHECK: 6");
                 }
                 //if no path is /downloaded yet, can't do image processing
@@ -293,40 +294,28 @@ public class EV3Numeric extends AppCompatActivity {
         btn_download = (Button) findViewById(R.id.btn_download);
 
         //assigning function to when clicked
+
+        //set button to drone takeoff
         btn_takeoff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (view == btn_takeoff) {
                     tc.takeOff();
                     setResultToToast("Takeoff");
-
-                    /*try {
-                        tc.stop();
-                        setResultToToast("STOP");
-                    } catch (Exception e){
-                        Log.d(TAG, "TestClass: STOP: onClick: " + e.toString());
-                    }*/
                 }
             }
         });
-
+        //sets button to drone landing
         btn_landing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (view == btn_landing) {
                     tc.startLanding();
                     setResultToToast("Landing");
-
-                    /*try {
-                        tc.TestMove(Direction.UP);
-                        setResultToToast("move UP");
-                    } catch (Exception e){
-                        Log.d(TAG, "TestClass: MOVE: onClick: " + e.toString());
-                    }*/
                 }
             }
         });
-
+        //sets button to take photo by drone
         btn_shoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -342,15 +331,6 @@ public class EV3Numeric extends AppCompatActivity {
                 }
             }
         });
-
-        btn_download.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tc.downloadPreviews(DownloadOptions.First);
-                //setResultToToast("Downloaded Picture");
-            }
-        });
-
     }
 
 

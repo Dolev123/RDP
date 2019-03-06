@@ -23,8 +23,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.dji.FPVDemo.R;
-
 import java.util.Set;
 
 /**

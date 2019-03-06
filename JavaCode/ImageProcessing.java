@@ -39,7 +39,9 @@ public class ImageProcessing {
         OpenCVLoader.initDebug();
         this.context = context;
         try {
-            Bitmap imageFromPath = BitmapFactory.decodeFile(path);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            Bitmap imageFromPath = BitmapFactory.decodeFile(path, options);
             src = new Mat(imageFromPath.getHeight(), imageFromPath.getWidth(), CvType.CV_8UC3);
             Utils.bitmapToMat(imageFromPath, src);
             //Imgproc.cvtColor(src, src, Imgproc.COLOR_BGR2RGB);
@@ -51,7 +53,8 @@ public class ImageProcessing {
         maskRed = new Mat();
         maskBlue = new Mat();
         isGray = false;
-        updateBitmap(src);
+        if (src.cols() > 0)
+            updateBitmap(src);
     }
 
     public void toGrayOrColor() {
@@ -81,7 +84,7 @@ public class ImageProcessing {
         Mat raw = new Mat();
         Mat hsv = new Mat();
         Utils.bitmapToMat(bm, raw);
-        Imgproc.cvtColor(raw, hsv, Imgproc.COLOR_RGB2HSV);
+        Imgproc.cvtColor(raw, hsv, Imgproc.COLOR_BGR2HSV);
         Mat mask1 = new Mat(), mask2 = new Mat();
         Mat maskGreen = new Mat();
         //=========================RED THRESHOLD===========================================
@@ -96,7 +99,7 @@ public class ImageProcessing {
         //=========================RED THRESHOLD===========================================
 
         //=========================GREEN THRESHOLD=========================================
-        double H_MIN_GREEN = 78, S_MIN_GREEN = 180, V_MIN_GREEN = 70, H_MAX_GREEN = 87, S_MAX_GREEN = 235, V_MAX_GREEN = 227;
+        double H_MIN_GREEN = 55, S_MIN_GREEN = 170, V_MIN_GREEN = 70, H_MAX_GREEN = 87, S_MAX_GREEN = 255, V_MAX_GREEN = 255;
         Core.inRange(hsv, new Scalar(H_MIN_GREEN, S_MIN_GREEN, V_MIN_GREEN), new Scalar(H_MAX_GREEN, S_MAX_GREEN, V_MAX_GREEN), maskGreen);
         Imgproc.GaussianBlur(maskGreen, maskGreen, new Size(3, 3), 0);
         Imgproc.morphologyEx(maskGreen, maskGreen, Imgproc.MORPH_OPEN, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(5, 5)));
