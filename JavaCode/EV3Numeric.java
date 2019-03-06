@@ -1,4 +1,4 @@
-package com.dji.FPVDemo;
+package com.dji.RDP.JavaCode;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dji.FPVDemo.R;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;

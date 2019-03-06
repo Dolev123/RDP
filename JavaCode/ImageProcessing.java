@@ -1,13 +1,9 @@
-
-package com.dji.FPVDemo;
+package com.dji.RDP.JavaCode;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.Toast;
-
-import com.dji.FPVDemo.Color;
-import com.dji.FPVDemo.MyPoint;
 
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;

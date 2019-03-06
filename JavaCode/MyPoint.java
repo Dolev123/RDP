@@ -1,5 +1,4 @@
-
-package com.dji.FPVDemo;
+package com.dji.RDP.JavaCode;
 
 import java.util.Comparator;
 

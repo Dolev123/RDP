@@ -1,4 +1,4 @@
-package com.dji.FPVDemo;
+package com.dji.RDP.JavaCode;
 
 import android.app.Application;
 import android.content.Intent;

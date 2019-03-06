@@ -1,4 +1,4 @@
-package com.dji.FPVDemo;
+package com.dji.RDP.JavaCode;
 
 /**
  * saves the x,y positions of a point

@@ -1,5 +1,4 @@
-package com.dji.FPVDemo;
-
+package com.dji.RDP.JavaCode;
 /**
  * IMPORTED CLASS
  * WE DID NOT WRITE THIS CLASS.
@@ -23,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.dji.FPVDemo.R;
 
 import java.util.Set;
 

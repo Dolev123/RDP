@@ -1,4 +1,4 @@
-package com.dji.FPVDemo;
+package com.dji.RDP.JavaCode;
 
 /**
  * IMPORTED CLASS
@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.dji.FPVDemo.R;
 
 import dji.sdk.base.BaseProduct;
 import dji.sdk.products.Aircraft;

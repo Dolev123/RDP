@@ -1,4 +1,4 @@
-package com.dji.FPVDemo;
+package com.dji.RDP.JavaCode;
 
 /**
  *IMPORTED CLASS
@@ -48,7 +48,7 @@ public class BluetoothEV3Service {
     public static final int STATE_CONNECTED = 3;  // now connected to a remote device
 
     // LEGO NXT Brick
-    public EV3Brick EV3;
+    public com.dji.RDP.JavaCode.EV3Brick EV3;
     
     /**
      * Constructor. Prepares a new Bluetooth session.
@@ -59,7 +59,7 @@ public class BluetoothEV3Service {
         // mAdapter = BluetoothAdapter.getDefaultAdapter();
         mState = STATE_NONE;
         mHandler = handler;
-        EV3 = new EV3Brick(this);
+        EV3 = new com.dji.RDP.JavaCode.EV3Brick(this);
     }
 
     /**
@@ -71,7 +71,7 @@ public class BluetoothEV3Service {
         mState = state;
 
         // Give the new state to the Handler so the UI Activity can update
-        mHandler.obtainMessage(EV3Numeric.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
+        mHandler.obtainMessage(com.dji.RDP.JavaCode.EV3Numeric.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
     }
 
     /**
@@ -152,9 +152,9 @@ public class BluetoothEV3Service {
         mConnectedThread.start();
 
         // Send the name of the connected device back to the UI Activity
-        Message msg = mHandler.obtainMessage(EV3Numeric.MESSAGE_DEVICE_NAME);
+        Message msg = mHandler.obtainMessage(com.dji.RDP.JavaCode.EV3Numeric.MESSAGE_DEVICE_NAME);
         Bundle bundle = new Bundle();
-        bundle.putString(EV3Numeric.DEVICE_NAME, device.getName());
+        bundle.putString(com.dji.RDP.JavaCode.EV3Numeric.DEVICE_NAME, device.getName());
         msg.setData(bundle);
         if (mHandler != null)
         {
@@ -213,9 +213,9 @@ public class BluetoothEV3Service {
         setState(STATE_NONE);
 
         // Send a failure message back to the Activity
-        Message msg = mHandler.obtainMessage(EV3Numeric.MESSAGE_TOAST);
+        Message msg = mHandler.obtainMessage(com.dji.RDP.JavaCode.EV3Numeric.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
-        bundle.putString(EV3Numeric.TOAST, "Unable to connect device");
+        bundle.putString(com.dji.RDP.JavaCode.EV3Numeric.TOAST, "Unable to connect device");
         msg.setData(bundle);
         if (mHandler != null)
         {
@@ -230,9 +230,9 @@ public class BluetoothEV3Service {
         setState(STATE_NONE);
 
         // Send a failure message back to the Activity
-        Message msg = mHandler.obtainMessage(EV3Numeric.MESSAGE_TOAST);
+        Message msg = mHandler.obtainMessage(com.dji.RDP.JavaCode.EV3Numeric.MESSAGE_TOAST);
         Bundle bundle = new Bundle();
-        bundle.putString(EV3Numeric.TOAST, "Device connection was lost");
+        bundle.putString(com.dji.RDP.JavaCode.EV3Numeric.TOAST, "Device connection was lost");
         msg.setData(bundle);
         if (mHandler != null)
         {
@@ -348,7 +348,7 @@ public class BluetoothEV3Service {
 
                     // Send the obtained bytes to the UI Activity
                     if (bytes > 0)
-                    	mHandler.obtainMessage(EV3Numeric.MESSAGE_READ, bytes, -1, buffer)
+                    	mHandler.obtainMessage(com.dji.RDP.JavaCode.EV3Numeric.MESSAGE_READ, bytes, -1, buffer)
                             .sendToTarget();
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
@@ -367,7 +367,7 @@ public class BluetoothEV3Service {
                 mmOutStream.write(buffer);
 
                 // Share the sent message back to the UI Activity
-                mHandler.obtainMessage(EV3Numeric.MESSAGE_WRITE, -1, -1, buffer)
+                mHandler.obtainMessage(com.dji.RDP.JavaCode.EV3Numeric.MESSAGE_WRITE, -1, -1, buffer)
                         .sendToTarget();
             } catch (IOException e) {
                 Log.e(TAG, "Exception during write", e);
