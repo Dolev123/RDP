@@ -238,7 +238,7 @@ public class EV3Numeric extends AppCompatActivity {
                     for (int i = 0; i < theMatrix.length; i++) {
                         for (int j = 0; j < theMatrix[i].length; j++) {
                             MyPoint p = theMatrix[i][j];
-                           /* ArrayList<Integer> neighbors = new ArrayList<>();
+                           /* ArrayList<Integer> ne.ighbors = new ArrayList<>();
                             neighbors.add()*/
                            int id = i*theMatrix.length+j;
                            if(p.color.equals(Color.GREEN))

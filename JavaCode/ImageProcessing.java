@@ -47,9 +47,11 @@ public class ImageProcessing {
         this.context = context;
         //Trying to read image from path to bitmap, and then from bitmap to Mat
         try {
+            //check if existence is necessary
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
-            Bitmap imageFromPath = BitmapFactory.decodeFile(path, options);
+            //til here
+            Bitmap imageFromPath = BitmapFactory.decodeFile(path);//, options);
             src = new Mat(imageFromPath.getHeight(), imageFromPath.getWidth(), CvType.CV_8UC3);
             Utils.bitmapToMat(imageFromPath, src);
             //Imgproc.cvtColor(src, src, Imgproc.COLOR_BGR2RGB);
@@ -115,6 +117,14 @@ public class ImageProcessing {
         Core.bitwise_or(maskGreen, thresh, thresh);
 
         //Join the red green and blue detected circles to an array, each circle with its location and color.
+        /**
+         * Houston We Have A HUMANGUS Problem!!!
+         * program crashes in the 2 lines below.
+         *
+         * the program can't find red or green circles, and all other circles are blue (even if they are not blue)
+         *
+         * 
+         */
         ArrayList<MyPoint> points = new ArrayList<>();
         for (Point[] row : redCircles) {
             for (Point redC : row) {
@@ -260,6 +270,12 @@ public class ImageProcessing {
      * @return 2D ordered matrix, from down up, left to right.
      */
     public Point[][] orderCirclesToMatrix(Point[] orderedCircles) {
+        //check length before accessing
+        if (orderedCircles.length <= 0)
+        {
+            return null;
+        }
+        //
         ArrayList<ArrayList<Point>> matrixCircles = new ArrayList<>();
         matrixCircles.add(new ArrayList<Point>());
         int currentIndex = 0;

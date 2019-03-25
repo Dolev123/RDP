@@ -513,7 +513,7 @@ public class TestClass {
 
                 //if the media wanted is preview
                 if (option == FetchMediaTaskContent.PREVIEW) {
-                    Log.d(TAG, "TestClass: PREVIEW path: "  + path + "\\" +file.getFileName());
+                    Log.d(TAG, "TestClass: PREVIEW path: "  + path + "/" +file.getFileName());
 
                 }
                 //if the media wanted is thumbnail
